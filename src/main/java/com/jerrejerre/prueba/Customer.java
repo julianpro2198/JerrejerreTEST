@@ -56,6 +56,12 @@ public class Customer {
 	
   }
   
+ public String getCompanyNit() {
+	  
+	  return this.company.getNit();
+	
+  }
+  
   public void setCompany(Company company) {
 	  this.company=company;
   }

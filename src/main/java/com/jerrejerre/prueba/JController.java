@@ -6,9 +6,11 @@ import java.util.Random;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -85,6 +87,26 @@ public class JController {
 	    return (List<Customer>) customerRepository.findAll();
 	  }
 	
+
+	
+	@GetMapping("/customer/{Nit}")
+	public List<Customer> getUserByCompanyId (@PathVariable("Nit") String Nit){
+	
+	List <Customer> clients = (List<Customer>) customerRepository.findAll(); 
+	
+	for(int i=0;i<clients.size();i++) {
+		if(clients.get(i).getCompanyNit().equals(Nit)) {
+			
+		}
+		else {
+			clients.remove(i);
+		}
+	}
+	
+	return clients;
+}
+	
+	
 	
 	
 	@PostMapping("/companies")
@@ -116,18 +138,8 @@ public class JController {
 	
 	}
 	
-	
-	/*
-	 * 	@PostMapping("/companies")
-	  public Company createCompany(@RequestBody Company company) {
+
 		
-	
-			return companyRepository.save(company);
-	
-	}
-	 */
-	
-	
 	
 	
 }
